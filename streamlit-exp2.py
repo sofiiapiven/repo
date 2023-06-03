@@ -15,10 +15,7 @@ if file is not None:
         df2 = pd.read_csv(file)
     elif file.type == "xlsx":
         df2 = pd.read_excel(file)
-        
-df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
-        
-df2.columns = df2.columns.str.strip()
+       
 
 st.title('Review Filters')
 
@@ -60,7 +57,10 @@ with st.expander("Select Tags"):
                     'Solo traveler', 'Business trip', 'Group', 'Family with young children']:
             if st.checkbox(tag):
                 selected_tags.append(tag)
-            
+
+df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
+        
+df2.columns = df2.columns.str.strip()
 # Apply the filter to the DataFrame
 selected_date = st.date_input('Select Date', [df2['Review_Date'].min().date(), df2['Review_Date'].max().date()], key='date_range')
             
