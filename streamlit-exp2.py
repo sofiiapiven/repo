@@ -4,18 +4,10 @@
 import pandas as pd
 import streamlit as st
 
-
+file_url = https://drive.google.com/file/d/1EkPF-IivH8MzTpLJDJsKMutP3kPy-pTW/view?usp=sharing
 # Create a file uploader widget
 file = st.file_uploader("Upload your file", type=["csv", "xlsx"])
-
-# Check if a file was uploaded
-if file is not None:
-    # Read the file into a Pandas dataframe
-    if file.type == "csv":
-        df2 = pd.read_csv(file)
-    elif file.type == "xlsx":
-        df2 = pd.read_excel(file)
-       
+df2 = pd.read_csv(file_url)
 
 st.title('Review Filters')
 
