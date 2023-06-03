@@ -39,7 +39,7 @@ textblob_min = st.slider('Minimum TextBlob Review Score', min_value=-1.000, max_
 textblob_max = st.slider('Maximum TextBlob Review Score', min_value=-1.000, max_value=1.000, value=1.000)
 
 spacy_min = st.slider('Minimum SpaCy Review Score', min_value=-0.9847, max_value=0.9974, value=-0.9847)
-spacy_max = st.slider('Maximum SpaCy Review Score', min_value=0.9847, max_value=0.9974, value=0.9974)
+spacy_max = st.slider('Maximum SpaCy Review Score', min_value=-0.9847, max_value=0.9974, value=0.9974)
 
 selected_tags = []
 with st.expander("Select Tags"):
