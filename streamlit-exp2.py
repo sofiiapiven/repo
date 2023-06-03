@@ -1,31 +1,24 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[33]:
-
-
 import pandas as pd
-df2 = pd.read_csv("C:/Users/Sofia/Downloads/prio_model.csv", delimiter= ',')
-
-
-# In[34]:
-
-
-df2.head()
-
-
-# In[35]:
-
-
-df2.columns = df2.columns.str.strip()
-
-
-# In[36]:
-
-
 import streamlit as st
 
+
+# Create a file uploader widget
+file = st.file_uploader("Upload your file", type=["csv", "xlsx"])
+
+# Check if a file was uploaded
+if file is not None:
+    # Read the file into a Pandas dataframe
+    if file.type == "csv":
+        df2 = pd.read_csv(file)
+    elif file.type == "xlsx":
+        df2 = pd.read_excel(file)
+        
 df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
+        
+df2.columns = df2.columns.str.strip()
 
 st.title('Review Filters')
 
@@ -103,17 +96,13 @@ filtered_df = filtered_df[
 ]
 if selected_tags:
     filtered_df = filtered_df[filtered_df[selected_tags].any(axis=1)]
-    
-    
-filtered_df = filtered_df.loc[:, 'review']
+
+
+filtered_df = filtered_df['review']
 
 # Display the filtered results
 st.write('Filtered Reviews:')
 st.write(filtered_df)
-
-
-# In[ ]:
-
 
 
 
