@@ -6,7 +6,7 @@
 import pandas as pd
 import streamlit as st
 
-file_url = 'https://drive.google.com/u/0/uc?id=1EkPF-IivH8MzTpLJDJsKMutP3kPy-pTW&export=download'
+file_url = 'https://drive.google.com/u/0/uc?id=19r_Ueut0RPcWSxGosk2MKNcTCwbokJn0&export=download'
 
 df2 = pd.read_csv(file_url)
 
