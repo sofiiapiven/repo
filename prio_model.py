@@ -15,7 +15,7 @@ totrev_max = st.slider('Maximum Number of Reviews Reviewer Has Given', min_value
 rev_min = st.slider('Minimum Reviewer Experience', min_value=0.006329, max_value=1.00, value=0.006329)
 rev_max = st.slider('Maximum Reviewer Experience', min_value=0.006329, max_value=1.00, value=1.00)
 
-
+df2.columns = df2.columns.str.strip()
 # Apply filters to the DataFrame
 selected_country = st.selectbox('Select Reviewer\'s Country', ['All'] + sorted(df2['Reviewer_Nationality'].unique()))
 
@@ -53,8 +53,6 @@ with st.expander("Select Tags"):
                 selected_tags.append(tag)
             
 df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
-        
-df2.columns = df2.columns.str.strip()
 
 # Apply the filter to the DataFrame
 selected_date = st.date_input('Select Date', [df2['Review_Date'].min().date(), df2['Review_Date'].max().date()], key='date_range')
