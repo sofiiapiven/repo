@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
 
+file_url = 'https://drive.google.com/u/0/uc?id=19r_Ueut0RPcWSxGosk2MKNcTCwbokJn0&export=download'
 
+df2 = pd.read_csv(file_url)
 
 df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
 
