@@ -7,7 +7,7 @@ import pandas as pd
 file_url = 'https://drive.google.com/u/0/uc?id=19r_Ueut0RPcWSxGosk2MKNcTCwbokJn0&export=download'
 
 df2 = pd.read_csv(file_url)
-
+df2.columns = df2.columns.str.strip()
 st.title('Review Filters')
 
 # Add sliders for selecting filter values
@@ -18,7 +18,7 @@ totrev_max = st.slider('Maximum Number of Reviews Reviewer Has Given', min_value
 rev_min = st.slider('Minimum Reviewer Experience', min_value=0.006329, max_value=1.00, value=0.006329)
 rev_max = st.slider('Maximum Reviewer Experience', min_value=0.006329, max_value=1.00, value=1.00)
 
-df2.columns = df2.columns.str.strip()
+
 # Apply filters to the DataFrame
 selected_country = st.selectbox('Select Reviewer\'s Country', ['All'] + sorted(df2['Reviewer_Nationality'].unique()))
 
