@@ -1,13 +1,31 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import streamlit as st
+# In[1]:
+
+
 import pandas as pd
+df2 = pd.read_csv("C:/Users/Sofia/Downloads/prio_model2.csv", delimiter= ',')
 
-file_url = 'https://drive.google.com/u/0/uc?id=19r_Ueut0RPcWSxGosk2MKNcTCwbokJn0&export=download'
 
-df2 = pd.read_csv(file_url)
+# In[2]:
+
+
+df2.head()
+
+
+# In[3]:
+
+
 df2.columns = df2.columns.str.strip()
+
+
+# In[4]:
+
+
+import streamlit as st
+
+df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
 
 st.title('Review Filters')
 
@@ -56,8 +74,6 @@ with st.expander("Select Tags"):
             if st.checkbox(tag):
                 selected_tags.append(tag)
             
-df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
-
 # Apply the filter to the DataFrame
 selected_date = st.date_input('Select Date', [df2['Review_Date'].min().date(), df2['Review_Date'].max().date()], key='date_range')
 
@@ -109,3 +125,10 @@ filtered_df = filtered_df['review']
 # Display the filtered results
 st.write('Filtered Reviews:')
 st.write(filtered_df)
+
+
+# In[ ]:
+
+
+
+
