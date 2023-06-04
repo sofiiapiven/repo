@@ -3,27 +3,14 @@
 
 # In[1]:
 
-
 import pandas as pd
-df2 = pd.read_csv("C:/Users/Sofia/Downloads/prio_model2.csv", delimiter= ',')
+import streamlit as st
 
+file_url = 'https://drive.google.com/u/0/uc?id=19r_Ueut0RPcWSxGosk2MKNcTCwbokJn0&export=download'
 
-# In[2]:
-
-
-df2.head()
-
-
-# In[3]:
-
+df2 = pd.read_csv(file_url)
 
 df2.columns = df2.columns.str.strip()
-
-
-# In[4]:
-
-
-import streamlit as st
 
 df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
 
