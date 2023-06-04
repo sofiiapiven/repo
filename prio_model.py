@@ -29,7 +29,7 @@ selected_country = st.selectbox('Select Reviewer\'s Country', ['All'] + sorted(d
 selected_sentiments = []
 with st.expander("Select Sentiments"):
     with st.container():
-        for sentiment_category in ['Positive', 'Neutral', 'Negative']:
+        for sentiment_category in ['Positive', 'Negative']:
             st.write(f"**{sentiment_category}**")
             selected_aspects = st.multiselect(f"Select {sentiment_category} Aspects", df2.columns[4:3219], [])
             selected_sentiments.extend(selected_aspects)
@@ -77,8 +77,6 @@ if selected_sentiments:
             sentiment = 1
         elif sentiment_category == 'Negative':
             sentiment = -1
-        elif sentiment_category == 'Neutral':
-            sentiment = 0
         filtered_df = filtered_df[filtered_df[aspect] == sentiment]
 if selected_tags:
     filtered_df = filtered_df[filtered_df[selected_tags].any(axis=1)]
