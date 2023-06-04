@@ -5,8 +5,6 @@ file_url = 'https://drive.google.com/u/0/uc?id=19r_Ueut0RPcWSxGosk2MKNcTCwbokJn0
 
 df2 = pd.read_csv(file_url)
 
-df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
-
 st.title('Review Filters')
 
 # Add sliders for selecting filter values
@@ -54,7 +52,9 @@ with st.expander("Select Tags"):
             if st.checkbox(tag):
                 selected_tags.append(tag)
             
+
 # Apply the filter to the DataFrame
+df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
 selected_date = st.date_input('Select Date', [df2['Review_Date'].min().date(), df2['Review_Date'].max().date()], key='date_range')
 
 rank_min = st.slider('Minimum Reviewer Ranking Score', min_value=-0.113486, max_value=0.333398, value=-0.113486)
