@@ -11,7 +11,7 @@ file_url = 'https://drive.google.com/u/0/uc?id=19r_Ueut0RPcWSxGosk2MKNcTCwbokJn0
 df2 = pd.read_csv(file_url)
 
 df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
-st.title('Review Filters')
+st.title('Review Filters (Including Prioritisation Model')
 
 # Add sliders for selecting filter values
 rating_min = st.slider('Minimum Reviewer Score', min_value=0, max_value=10, value=0)
