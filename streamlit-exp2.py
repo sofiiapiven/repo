@@ -11,11 +11,8 @@ df2 = pd.read_csv(file_url)
 st.title('Review Filters')
 
 # Add sliders for selecting filter values
-rating_min = st.slider('Minimum Reviewer Score', min_value=0, max_value=10, value=0)
-rating_max = st.slider('Maximum Reviewer Score', min_value=0, max_value=10, value=10)
-totrev_min = st.slider('Minimum Number of Reviews Reviewer Has Given', min_value=1, max_value=158, value=1)
-totrev_max = st.slider('Maximum Number of Reviews Reviewer Has Given', min_value=1, max_value=158, value=158)
-
+rating_range = st.slider('Reviewer Score Range', min_value=0, max_value=(0, 10), value=(0, 10))
+totrev_range = st.slider('Number of Reviews Reviewer Has Given', min_value=1, max_value=(1, 158), value=(1, 158))
 
 # Apply filters to the DataFrame
 selected_country = st.selectbox('Select Reviewer\'s Country', ['All'] + sorted(df2['Reviewer_Nationality'].unique()))
@@ -29,17 +26,13 @@ with st.expander("Select Sentiments"):
             selected_aspects = st.multiselect(f"Select {sentiment_category} Aspects", df2.columns[4:3219], [])
             selected_sentiments.extend(selected_aspects)
 
-compound_min = st.slider('Minimum Vader Review Score', min_value=-0.9683, max_value=0.9954, value=-0.9683)
-compound_max = st.slider('Maximum Vader Review Score', min_value=-0.9683, max_value=0.9954, value=0.9954)
+compound_range = st.slider('Vader Review Score', min_value=-0.9683, max_value=(-0.9683, 0.9954), value=(-0.9683, 0.9954))
 
-afinn_min = st.slider('Minimum AFINN Review Score', min_value=-20.000, max_value=31.000, value=-20.000)
-afinn_max = st.slider('Maximum AFINN Review Score', min_value=-20.000, max_value=31.000, value=31.000)
+afinn_range = st.slider('AFINN Review Score', min_value=-20.000, max_value=(-20.000, 31.000), value=(-20.000, 31.000))
 
-textblob_min = st.slider('Minimum TextBlob Review Score', min_value=-1.000, max_value=1.000, value=-1.000)
-textblob_max = st.slider('Maximum TextBlob Review Score', min_value=-1.000, max_value=1.000, value=1.000)
+textblob_range = st.slider('TextBlob Review Score', min_value=-1.000, max_value=(-1.000, 1.000), value=(-1.000, 1.000))
 
-spacy_min = st.slider('Minimum SpaCy Review Score', min_value=-0.9847, max_value=0.9974, value=-0.9847)
-spacy_max = st.slider('Maximum SpaCy Review Score', min_value=-0.9847, max_value=0.9974, value=0.9974)
+spacy_range = st.slider('SpaCy Review Score', min_value=-0.9847, max_value=(-0.9847, 0.9974), value=(-0.9847, 0.9974))
 
 selected_tags = []
 with st.expander("Select Tags"):
@@ -70,20 +63,20 @@ if selected_sentiments:
 if selected_tags:
     filtered_df = filtered_df[filtered_df[selected_tags].any(axis=1)]
 filtered_df = filtered_df[
-    (filtered_df['Reviewer_Score'] >= rating_min) &
-    (filtered_df['Reviewer_Score'] <= rating_max) &
-    (filtered_df['Total_Number_of_Reviews_Reviewer_Has_Given'] >= totrev_min) &
-    (filtered_df['Total_Number_of_Reviews_Reviewer_Has_Given'] <= totrev_max) &
+    (filtered_df['Reviewer_Score'] >= rating_range[0]) &
+    (filtered_df['Reviewer_Score'] <= rating_range[1]) &
+    (filtered_df['Total_Number_of_Reviews_Reviewer_Has_Given'] >= totrev_range[0]) &
+    (filtered_df['Total_Number_of_Reviews_Reviewer_Has_Given'] <= totrev_range[1]) &
     (filtered_df['Review_Date'] >= pd.to_datetime(selected_date[0])) &
     (filtered_df['Review_Date'] <= pd.to_datetime(selected_date[1])) &
-    (filtered_df['compound'] >= compound_min) &
-    (filtered_df['compound'] <= compound_max) &
-    (filtered_df['afinn_score_review'] >= afinn_min) &
-    (filtered_df['afinn_score_review'] <= afinn_max) &
-    (filtered_df['TextBlob_Polarity'] >= textblob_min) &
-    (filtered_df['TextBlob_Polarity'] <= textblob_max) &
-    (filtered_df['Spacy_compound'] >= spacy_min) &
-    (filtered_df['Spacy_compound'] <= spacy_max) 
+    (filtered_df['compound'] >= compound_range[0]) &
+    (filtered_df['compound'] <= compound_range[1]) &
+    (filtered_df['afinn_score_review'] >= afinn_range[0]) &
+    (filtered_df['afinn_score_review'] <= afinn_range[1]) &
+    (filtered_df['TextBlob_Polarity'] >= textblob_range[0]) &
+    (filtered_df['TextBlob_Polarity'] <= textblob_range[1]) &
+    (filtered_df['Spacy_compound'] >= spacy_range[0]) &
+    (filtered_df['Spacy_compound'] <= spacy_range[1]) 
 ]
 if selected_tags:
     filtered_df = filtered_df[filtered_df[selected_tags].any(axis=1)]
