@@ -71,27 +71,28 @@ if selected_sentiments:
 if selected_tags:
     filtered_df = filtered_df[filtered_df[selected_tags].any(axis=1)]
 filtered_df = filtered_df[
-    (filtered_df['Reviewer_Score'] >= rating_min) &
-    (filtered_df['Reviewer_Score'] <= rating_max) &
-    (filtered_df['Total_Number_of_Reviews_Reviewer_Has_Given'] >= totrev_min) &
-    (filtered_df['Total_Number_of_Reviews_Reviewer_Has_Given'] <= totrev_max) &
-    (filtered_df['maturity_score'] >= rev_min) &
-    (filtered_df['maturity_score'] <= rev_max) &
+    (filtered_df['Reviewer_Score'] >= rating_range[0]) &
+    (filtered_df['Reviewer_Score'] <= rating_range[1]) &
+    (filtered_df['Total_Number_of_Reviews_Reviewer_Has_Given'] >= totrev_range[0]) &
+    (filtered_df['Total_Number_of_Reviews_Reviewer_Has_Given'] <= totrev_range[1]) &
+    (filtered_df['maturity_score'] >= rev_range[0]) &
+    (filtered_df['maturity_score'] <= rev_range[1]) &
     (filtered_df['Review_Date'] >= pd.to_datetime(selected_date[0])) &
     (filtered_df['Review_Date'] <= pd.to_datetime(selected_date[1])) &
-    (filtered_df['changeable_aspect_sentiment_score'] >= changeable_aspect_min) &
-    (filtered_df['changeable_aspect_sentiment_score'] <= changeable_aspect_max) &
-    (filtered_df['compound'] >= compound_min) &
-    (filtered_df['compound'] <= compound_max) &
-    (filtered_df['afinn_score_review'] >= afinn_min) &
-    (filtered_df['afinn_score_review'] <= afinn_max) &
-    (filtered_df['TextBlob_Polarity'] >= textblob_min) &
-    (filtered_df['TextBlob_Polarity'] <= textblob_max) &
-    (filtered_df['Spacy_compound'] >= spacy_min) &
-    (filtered_df['Spacy_compound'] <= spacy_max) &
-    (filtered_df['customer_ranking_score'] >= rank_min) &
-    (filtered_df['customer_ranking_score'] <= rank_max) 
+    (filtered_df['changeable_aspect_sentiment_score'] >= changeable_aspect_range[0]) &
+    (filtered_df['changeable_aspect_sentiment_score'] <= changeable_aspect_range[1]) &
+    (filtered_df['compound'] >= compound_range[0]) &
+    (filtered_df['compound'] <= compound_range[1]) &
+    (filtered_df['afinn_score_review'] >= afinn_range[0]) &
+    (filtered_df['afinn_score_review'] <= afinn_range[1]) &
+    (filtered_df['TextBlob_Polarity'] >= textblob_range[0]) &
+    (filtered_df['TextBlob_Polarity'] <= textblob_range[1]) &
+    (filtered_df['Spacy_compound'] >= spacy_range[0]) &
+    (filtered_df['Spacy_compound'] <= spacy_range[1]) &
+    (filtered_df['customer_ranking_score'] >= rank_range[0]) &
+    (filtered_df['customer_ranking_score'] <= rank_range[1])    
 ]
+    
 if selected_tags:
     filtered_df = filtered_df[filtered_df[selected_tags].any(axis=1)]
 
