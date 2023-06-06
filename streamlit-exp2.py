@@ -12,7 +12,7 @@ st.title('Review Filters')
 
 # Add sliders for selecting filter values
 rating_range = st.slider('Reviewer Score Range', min_value=0, max_value=10, value=(0, 10))
-totrev_range = st.slider('Number of Reviews Reviewer Has Given', min_value=1, max_value=(1, 158), value=(1, 158))
+totrev_range = st.slider('Number of Reviews Reviewer Has Given', min_value=1, max_value=158, value=(1, 158))
 
 # Apply filters to the DataFrame
 selected_country = st.selectbox('Select Reviewer\'s Country', ['All'] + sorted(df2['Reviewer_Nationality'].unique()))
@@ -26,13 +26,13 @@ with st.expander("Select Sentiments"):
             selected_aspects = st.multiselect(f"Select {sentiment_category} Aspects", df2.columns[4:3219], [])
             selected_sentiments.extend(selected_aspects)
 
-compound_range = st.slider('Vader Review Score', min_value=-0.9683, max_value=(-0.9683, 0.9954), value=(-0.9683, 0.9954))
+compound_range = st.slider('Vader Review Score', min_value=-0.9683, max_value=0.9954, value=(-0.9683, 0.9954))
 
-afinn_range = st.slider('AFINN Review Score', min_value=-20.000, max_value=(-20.000, 31.000), value=(-20.000, 31.000))
+afinn_range = st.slider('AFINN Review Score', min_value=-20.000, max_value=31.000, value=(-20.000, 31.000))
 
-textblob_range = st.slider('TextBlob Review Score', min_value=-1.000, max_value=(-1.000, 1.000), value=(-1.000, 1.000))
+textblob_range = st.slider('TextBlob Review Score', min_value=-1.000, max_value=1.000, value=(-1.000, 1.000))
 
-spacy_range = st.slider('SpaCy Review Score', min_value=-0.9847, max_value=(-0.9847, 0.9974), value=(-0.9847, 0.9974))
+spacy_range = st.slider('SpaCy Review Score', min_value=-0.9847, max_value=0.9974, value=(-0.9847, 0.9974))
 
 selected_tags = []
 with st.expander("Select Tags"):
