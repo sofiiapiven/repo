@@ -30,20 +30,15 @@ with st.expander("Select Sentiments"):
             selected_aspects = st.multiselect(f"Select {sentiment_category} Aspects", df2.columns[4:3219], [])
             selected_sentiments.extend(selected_aspects)
 
-changeable_aspect_min = st.slider('Minimum Important Aspect Sentiment Score', min_value=-0.230769, max_value=0.153846, value=-0.230769)
-changeable_aspect_max = st.slider('Maximum Important Aspect Sentiment Score', min_value=-0.230769, max_value=0.153846, value=0.153846)
+changeable_aspect_range = st.slider('Important Aspect Sentiment Score', min_value=-0.230769, max_value=0.153846, value=(-0.230769, 0.153846))
 
-compound_min = st.slider('Minimum Vader Review Score', min_value=-0.9683, max_value=0.9954, value=-0.9683)
-compound_max = st.slider('Maximum Vader Review Score', min_value=-0.9683, max_value=0.9954, value=0.9954)
+compound_range = st.slider('Vader Review Score', min_value=-0.9683, max_value=0.9954, value=(-0.9683, 0.9954))
 
-afinn_min = st.slider('Minimum AFINN Review Score', min_value=-20.000, max_value=31.000, value=-20.000)
-afinn_max = st.slider('Maximum AFINN Review Score', min_value=-20.000, max_value=31.000, value=31.000)
+afinn_range = st.slider('AFINN Review Score', min_value=-20.000, max_value=31.000, value=(-20.000, 31.000))
 
-textblob_min = st.slider('Minimum TextBlob Review Score', min_value=-1.000, max_value=1.000, value=-1.000)
-textblob_max = st.slider('Maximum TextBlob Review Score', min_value=-1.000, max_value=1.000, value=1.000)
+textblob_range = st.slider('TextBlob Review Score', min_value=-1.000, max_value=1.000, value=(-1.000, 1.000))
 
-spacy_min = st.slider('Minimum SpaCy Review Score', min_value=-0.9847, max_value=0.9974, value=-0.9847)
-spacy_max = st.slider('Maximum SpaCy Review Score', min_value=0.9847, max_value=0.9974, value=0.9974)
+spacy_range = st.slider('SpaCy Review Score', min_value=-0.9847, max_value=0.9974, value=(-0.9847, 0.9974))
 
 
 selected_tags = []
@@ -61,8 +56,7 @@ df2.columns = df2.columns.str.strip()
 # Apply the filter to the DataFrame
 selected_date = st.date_input('Select Date', [df2['Review_Date'].min().date(), df2['Review_Date'].max().date()], key='date_range')
 
-rank_min = st.slider('Minimum Reviewer Ranking Score', min_value=-0.113486, max_value=0.333398, value=-0.113486)
-rank_max = st.slider('Maximum Reviewer Ranking Score', min_value=-0.113486, max_value=0.333398, value=0.333398)
+rank_range = st.slider('Reviewer Ranking Score', min_value=-0.113486, max_value=0.333398, value=(-0.113486, 0.333398)
 
 filtered_df = df2.copy()
 if selected_country != 'All':
