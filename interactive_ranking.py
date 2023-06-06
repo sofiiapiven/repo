@@ -15,7 +15,7 @@ columns = ['room', 'bathroom', 'bedroom', 'bed', 'tv', 'balcony', 'ac', 'air_con
 for column in columns:  
     weights[column] = st.slider(f'Weight for {column}', min_value=0.0, max_value=1.0, value=0.0, step=0.01)
 
-df3 = df2[columns]
+df3 = df2[[columns]]
 
 columns_2 = ['Reviewer_Score', 'Total_Number_of_Reviews_Reviewer_Has_Given']
 
