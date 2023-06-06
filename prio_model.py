@@ -14,13 +14,9 @@ df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
 st.title('Review Filters (Including Prioritisation Model)')
 
 # Add sliders for selecting filter values
-rating_min = st.slider('Minimum Reviewer Score', min_value=0, max_value=10, value=0)
-rating_max = st.slider('Maximum Reviewer Score', min_value=0, max_value=10, value=10)
-totrev_min = st.slider('Minimum Number of Reviews Reviewer Has Given', min_value=1, max_value=158, value=1)
-totrev_max = st.slider('Maximum Number of Reviews Reviewer Has Given', min_value=1, max_value=158, value=158)
-rev_min = st.slider('Minimum Reviewer Experience', min_value=0.006329, max_value=1.00, value=0.006329)
-rev_max = st.slider('Maximum Reviewer Experience', min_value=0.006329, max_value=1.00, value=1.00)
-
+rating_range = st.slider('Reviewer Score Range', min_value=0, max_value=10, value=(0, 10))
+totrev_range = st.slider('Number of Reviews Reviewer Has Given', min_value=1, max_value=158, value=(1, 158))
+rev_range = st.slider('Review Experience', min_value=0.006329, max_value=1.00, value=(0.006329, 1.00))
 
 # Apply filters to the DataFrame
 selected_country = st.selectbox('Select Reviewer\'s Country', ['All'] + sorted(df2['Reviewer_Nationality'].unique()))
