@@ -11,7 +11,7 @@ df2 = pd.read_csv(file_url)
 st.title('Review Filters')
 
 # Add sliders for selecting filter values
-rating_range = st.slider('Reviewer Score Range', min_value=0, max_value=(0, 10), value=(0, 10))
+rating_range = st.slider('Reviewer Score Range', min_value=0, max_value=10, value=(0, 10))
 totrev_range = st.slider('Number of Reviews Reviewer Has Given', min_value=1, max_value=(1, 158), value=(1, 158))
 
 # Apply filters to the DataFrame
