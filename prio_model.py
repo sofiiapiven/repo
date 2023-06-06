@@ -56,7 +56,7 @@ df2.columns = df2.columns.str.strip()
 # Apply the filter to the DataFrame
 selected_date = st.date_input('Select Date', [df2['Review_Date'].min().date(), df2['Review_Date'].max().date()], key='date_range')
 
-rank_range = st.slider('Reviewer Ranking Score', min_value=-0.113486, max_value=0.333398, value=(-0.113486, 0.333398)
+rank_range = st.slider('Reviewer Ranking Score', min_value=-0.113486, max_value=0.333398, value=(-0.113486, 0.333398))
 
 filtered_df = df2.copy()
 if selected_country != 'All':
