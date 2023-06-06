@@ -9,21 +9,21 @@ st.title('Customer Prioritisation Model')
 
 # Create sliders for adjusting column weights
 weights = {}
-columns = [’room’, ’bathroom’, ’bedroom’, ’bed’, ’tv’, ’balcony’, ’ac’, ’air_conditioning’,
-’tee_coffee’, ’service’, ’staff’, ’reception’, ’receptionist’, ’food’, ’restaurant’, ’breakfast’, ’location’, 'noise', 'maintenance']
+columns = ['room', 'bathroom', 'bedroom', 'bed', 'tv', 'balcony', 'ac', 'air_conditioning',
+           'tee_coffee', 'service', 'staff', 'reception', 'receptionist', 'food', 'restaurant',
+           'breakfast', 'location', 'noise', 'maintenance']
 for column in columns:  
     weights[column] = st.slider(f'Weight for {column}', min_value=0.0, max_value=1.0, value=0.0, step=0.01)
 
-df3 = df2[[’room’, ’bathroom’, ’bedroom’, ’bed’, ’tv’, ’balcony’, ’ac’, ’air_conditioning’,
-’tee_coffee’, ’service’, ’staff’, ’reception’, ’receptionist’, ’food’, ’restaurant’, ’breakfast’, ’location’, 'noise', 'maintenance']]
+df3 = df2[columns]
 
-columns_2=[Reviewer_Score, Total_Number_of_Reviews_Reviewer_Has_Given]
+columns_2 = ['Reviewer_Score', 'Total_Number_of_Reviews_Reviewer_Has_Given']
 
 for column in columns_2:  
     weights[column] = st.slider(f'Weight for {column}', min_value=0.0, max_value=1.0, value=0.0, step=0.01)
     
 # Calculate the weighted rank
-df2['Weighted_Rank'] = (-df2[df3.columns] * pd.Series(weights)).sum(axis=1) + (df2[['Reviewer_Score', 'Total_Number_of_Reviews_Reviewer_Has_Given']] * pd.Series(weights)).sum(axis=1)
+df2['Weighted_Rank'] = (-df3 * pd.Series(weights)).sum(axis=1) + (df2[columns_2] * pd.Series(weights)).sum(axis=1)
 df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
 selected_date = st.date_input('Select Date', [df2['Review_Date'].min().date(), df2['Review_Date'].max().date()], key='date_range')
 
@@ -38,4 +38,5 @@ df2 = filtered_df.sort_values('Weighted_Rank', ascending=False)
 
 # Display the sorted DataFrame
 st.write('Ranked Reviews:')
-st.write(df2[['review','Weighted_Rank']])
+st.write(df2[['review', 'Weighted_Rank']])
+
