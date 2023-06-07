@@ -14,12 +14,12 @@ columns = ['room', 'bathroom', 'bedroom', 'bed', 'tv', 'balcony', 'ac', 'air_con
            'tea_coffee', 'service', 'staff', 'reception', 'receptionist', 'food', 'restaurant',
            'breakfast', 'location', 'noise', 'maintenance']
 for column in columns:  
-    weights[column] = st.slider(f'Weight for {column}', min_value=0.0, max_value=1.0, value=0.0, step=0.01)
+    weights[column] = st.slider(f'Weight for {column}', min_value=-1.0, max_value=1.0, value=0.0, step=0.1)
 
 columns_2 = ['Reviewer_Score', 'Total_Number_of_Reviews_Reviewer_Has_Given']
 
 for column in columns_2:  
-    weights[column] = st.slider(f'Weight for {column}', min_value=0.0, max_value=1.0, value=0.0, step=0.01)
+    weights[column] = st.slider(f'Weight for {column}', min_value=-1.0, max_value=1.0, value=0.0, step=0.1)
 
 df2 = df2.fillna(0)
 df3 = df2[['room', 'bathroom', 'bedroom', 'bed', 'tv', 'balcony', 'ac', 'air_conditioning',
@@ -27,7 +27,7 @@ df3 = df2[['room', 'bathroom', 'bedroom', 'bed', 'tv', 'balcony', 'ac', 'air_con
            'breakfast', 'location', 'noise', 'maintenance']]
 
 # Calculate the weighted rank
-df2['Weighted_Rank'] = (-df3 * pd.Series(weights)).sum(axis=1) + (df2[['Reviewer_Score', 'Total_Number_of_Reviews_Reviewer_Has_Given']] * pd.Series(weights)).sum(axis=1)
+df2['Weighted_Rank'] = (df3 * pd.Series(weights)).sum(axis=1) + (df2[['Reviewer_Score', 'Total_Number_of_Reviews_Reviewer_Has_Given']] * pd.Series(weights)).sum(axis=1)
 df2['Review_Date'] = pd.to_datetime(df2['Review_Date'])
 selected_date = st.date_input('Select Date', [df2['Review_Date'].min().date(), df2['Review_Date'].max().date()], key='date_range')
 
