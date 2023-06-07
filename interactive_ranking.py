@@ -7,6 +7,8 @@ df2 = pd.read_csv(file_url)
 df2.columns = df2.columns.str.strip()
 
 st.title('Customer Prioritisation Model')
+st.markdown('You can manually adjust the weights according to your preferences / business model / goals.')
+st.markdown('Remark: Negative weights rank negative sentiments of aspects, lower reviewer\'s scores and less active travellers up.')
 
 # Create sliders for adjusting column weights
 weights = {}
