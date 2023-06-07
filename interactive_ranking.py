@@ -23,7 +23,7 @@ for column in columns_2:
 
 df2 = df2.fillna(0)
 df3 = df2[['room', 'bathroom', 'bedroom', 'bed', 'tv', 'balcony', 'ac', 'air_conditioning',
-           'tee_coffee', 'service', 'staff', 'reception', 'receptionist', 'food', 'restaurant',
+           'tea_coffee', 'service', 'staff', 'reception', 'receptionist', 'food', 'restaurant',
            'breakfast', 'location', 'noise', 'maintenance']]
 
 # Calculate the weighted rank
