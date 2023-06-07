@@ -11,7 +11,7 @@ st.title('Customer Prioritisation Model')
 # Create sliders for adjusting column weights
 weights = {}
 columns = ['room', 'bathroom', 'bedroom', 'bed', 'tv', 'balcony', 'ac', 'air_conditioning',
-           'tee_coffee', 'service', 'staff', 'reception', 'receptionist', 'food', 'restaurant',
+           'tea_coffee', 'service', 'staff', 'reception', 'receptionist', 'food', 'restaurant',
            'breakfast', 'location', 'noise', 'maintenance']
 for column in columns:  
     weights[column] = st.slider(f'Weight for {column}', min_value=0.0, max_value=1.0, value=0.0, step=0.01)
